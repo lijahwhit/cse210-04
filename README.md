@@ -36,3 +36,5 @@ root                    (project root folder)
 * # TODO: Add your name and email here
 
 Elijah Whitchurch (elijah.whitchurch@gmail.com)
+Sean Layton (seanryan@byui.edu)
+
