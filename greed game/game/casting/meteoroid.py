@@ -11,7 +11,7 @@ class Meteoroid(Actor):
 
     def __init__(self):
         super().__init__()
-        self._type = "rock"
+        self._type = "rockzzz"
 
     def get_type(self):
         """Gets the meteoroids's type

@@ -82,7 +82,8 @@ class Director:
                 cast.remove_actor("meteoroids", meteoroid)
 
         # randomly generate some new meteoroids
-        self._meteormaker.update_meteormaker(cast)
+        self._meteormaker.update_rockmaker(cast)
+        self._meteormaker.update_gemmaker(cast)
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
