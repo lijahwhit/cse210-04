@@ -65,7 +65,7 @@ class Director:
             # apply gravity to all meteoroids to move them downward
             meteoroid.move_next(max_x, max_y*2)
 
-            #
+            # update score and clarify catch
             if meteoroid.get_position().get_y() > max_y:
                 cast.remove_actor("meteoroids", meteoroid)
 
@@ -82,8 +82,7 @@ class Director:
                 cast.remove_actor("meteoroids", meteoroid)
 
         # randomly generate some new meteoroids
-        self._meteormaker.update_rockmaker(cast)
-        self._meteormaker.update_gemmaker(cast)
+        self._meteormaker.update_meteormaker(cast)
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
