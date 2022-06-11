@@ -53,7 +53,7 @@ def main():
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     gravity = Gravity(CELL_SIZE)
-    meteormaker = Meteormaker(CELL_SIZE, COLS, FONT_SIZE)
+    meteormaker = Meteormaker()
     director = Director(keyboard_service, video_service, gravity, meteormaker)
     director.start_game(cast)
 

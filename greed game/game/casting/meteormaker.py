@@ -17,7 +17,7 @@ class Meteormaker:
         create_rate(int): For controlling likelyhood of new meteor being created
     """
 
-    def __init__(self, cell_size=1, cols=1, font_size=1):
+    def __init__(self):
         """Constructs Gravity using the specified cell size.
         Args:
             cell_size (int): The size of a cell in the display grid.
@@ -25,9 +25,7 @@ class Meteormaker:
             font_size (int): Font size to assign meteors
             create_rate(int): % of how likely it is to create a new meteor         
         """
-        self._cell_size = cell_size
-        self._cols = cols
-        self._font_size = font_size
+
         self._create_rate = 14
 
     def update_rockmaker(self, cast):
