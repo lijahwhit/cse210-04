@@ -37,4 +37,4 @@ root                    (project root folder)
 
 Elijah Whitchurch (elijah.whitchurch@gmail.com)
 Sean Layton (seanryan@byui.edu)
-
+lourenzo kodama (kodamalourenzo@gmailcom)
