@@ -1,4 +1,3 @@
-import os
 
 from game.casting.actor import Actor
 from game.casting.cast import Cast
@@ -13,7 +12,7 @@ from game.shared.point import Point
 from game.shared.gravity import Gravity
 from game.casting.meteormaker import Meteormaker
 
-FRAME_RATE = 12
+FRAME_RATE = 20
 MAX_X = 1200
 MAX_Y = 900
 CELL_SIZE = 15
@@ -31,10 +30,10 @@ def main():
 
     # create the banner
     banner = Actor()
-    banner.set_text("")
+    banner.set_text("Collect Gems * to earn points!")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
+    banner.set_position(Point(CELL_SIZE, CELL_SIZE))
     cast.add_actor("banners", banner)
 
     # create the robot
@@ -43,7 +42,7 @@ def main():
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("#")
+    robot.set_text("###")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
     robot.set_position(position)
@@ -53,7 +52,7 @@ def main():
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     gravity = Gravity(CELL_SIZE)
-    meteormaker = Meteormaker()
+    meteormaker = Meteormaker(CELL_SIZE, COLS, FONT_SIZE)
     director = Director(keyboard_service, video_service, gravity, meteormaker)
     director.start_game(cast)
 

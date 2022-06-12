@@ -1,9 +1,14 @@
-import random
+
+from game.shared.color import Color
+white = Color(255, 255, 255)
+red = Color(255, 0, 0)
 
 
 class Director:
     """A person who directs the game. 
+
     The responsibility of a Director is to control the sequence of play.
+
     Attributes:
         _keyboard_service (KeyboardService): For getting directional input.
         _video_service (VideoService): For providing video output.
@@ -12,6 +17,7 @@ class Director:
 
     def __init__(self, keyboard_service, video_service, gravity, meteormaker):
         """Constructs a new Director using the specified keyboard and video services.
+
         Args:
             keyboard_service (KeyboardService): An instance of KeyboardService.
             video_service (VideoService): An instance of VideoService.
@@ -21,9 +27,11 @@ class Director:
         self._video_service = video_service
         self._gravity = gravity
         self._meteormaker = meteormaker
+        self._score = 0
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
+
         Args:
             cast (Cast): The cast of actors.
         """
@@ -36,6 +44,7 @@ class Director:
 
     def _get_inputs(self, cast):
         """Gets directional input from the keyboard and applies it to the robot.
+
         Args:
             cast (Cast): The cast of actors.
         """
@@ -45,6 +54,7 @@ class Director:
 
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with meteoroids.
+
         Args:
             cast (Cast): The cast of actors.
         """
@@ -52,7 +62,6 @@ class Director:
         robot = cast.get_first_actor("robots")
         meteoroids = cast.get_actors("meteoroids")
 
-        banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
@@ -75,18 +84,32 @@ class Director:
 
                 # check the meteoroids _get_type and then apply score accordingly
 
-                # apply new score
-                banner.set_text("score: 0")
+                if meteoroid.get_type() == "rock":
+                    self._score -= 10
+
+                elif meteoroid.get_type() == "gem":
+                    self._score += 5
+                    
+                elif meteoroid.get_type() == "gem2.0":
+                    self._score += 10
+
+                if self._score >= 0:
+                    banner.set_color(white)
+                else:
+                    banner.set_color(red)
+
+                # display new score
+                banner.set_text(f"Score: {self._score}")
 
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)
 
         # randomly generate some new meteoroids
-        self._meteormaker.update_rockmaker(cast)
-        self._meteormaker.update_gemmaker(cast)
+        self._meteormaker.update_meteormaker(cast)
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
+
         Args:
             cast (Cast): The cast of actors.
         """
