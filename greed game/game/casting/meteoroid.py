@@ -10,7 +10,7 @@ class Meteoroid(Actor):
     Attributes:
         _type (String): "gem" or "rock"
     """
-
+    
     def __init__(self):
         super().__init__()
         self._type = "rock"

@@ -74,7 +74,7 @@ class Director:
             # apply gravity to all meteoroids to move them downward
             meteoroid.move_next(max_x, max_y*2)
 
-            #
+            # update score and clarify catch
             if meteoroid.get_position().get_y() > max_y:
                 cast.remove_actor("meteoroids", meteoroid)
 
